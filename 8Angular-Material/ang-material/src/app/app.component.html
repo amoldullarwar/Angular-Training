@@ -1,0 +1,53 @@
+<p>Index Page</p>
+
+<div class="register">
+  <form class="example-form">
+  
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Favorite food</mat-label>
+          <input matInput placeholder="Ex. Pizza" value="Sushi">
+        </mat-form-field> <br>
+    
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Leave a comment</mat-label>
+          <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+        </mat-form-field>
+
+        <mat-radio-group aria-label="Select an option">
+          <mat-radio-button value="1">Option 1</mat-radio-button>
+          <mat-radio-button value="2">Option 2</mat-radio-button>
+        </mat-radio-group>  <br>
+
+        <section class="example-section">
+          <mat-checkbox class="example-margin">Check me!</mat-checkbox>
+          <mat-checkbox class="example-margin" [disabled]="true">Disabled</mat-checkbox>
+        </section>
+
+        <section class="example-section">
+          <span class="example-list-section">
+            <mat-checkbox class="example-margin"
+                          [checked]="allComplete"
+                          [color]="task.color"
+                          [indeterminate]="someComplete()"
+                          (change)="setAll($event.checked)">
+              {{task.name}}
+            </mat-checkbox>
+          </span>
+          <span class="example-list-section">
+            <ul>
+              <li *ngFor="let subtask of task.subtasks">
+                  <!--    -->
+                <mat-checkbox 
+                              [(ngModel)]="subtask.completed"
+                              [color]="subtask.color"
+                              (ngModelChange)="updateAllComplete()">
+                  {{subtask.name}}
+                </mat-checkbox>
+              </li>
+            </ul>
+          </span>
+        </section>
+     
+ </form>
+</div>
+
