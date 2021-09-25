@@ -1,0 +1,40 @@
+<p>Auth login works!</p>
+<button type="button" (click)="navigate()">Navigate to Dashboard</button>
+<br>
+<br>
+<a routerLink="dashboard" >Dashboard Link</a>
+<br>
+<button type="button" (click)="getData()">Get Data from server</button>
+
+
+<br><br>
+
+<div class="login">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label>User Name</label>
+            <input type="text" formControlName="userName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.userName.errors }"/>
+            <div *ngIf="submitted && f.userName.errors" class="invalid-feedback">
+                <div *ngIf="f.userName.errors.required">User Name is required</div>
+            </div>
+        </div>
+           
+        <div class="form-group">
+            <label>password    .</label>
+            <input type="text" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                <div *ngIf="f.password.errors.required">Password is required</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+</div>
+<br>
+Search : <input type="text" [(ngModel)]="query ">
+<table border="1px" > 
+    <tr><th>ID</th><th>Name</th><th>Email</th></tr>    
+    <tr *ngFor='let val of data | async | SearchFilter :query'><td>{{val?.id}}</td><td>{{val?.name}}</td><td>{{val?.email}}</td></tr>
+</table>
